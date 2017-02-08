@@ -21,30 +21,6 @@ def passenger_list(request):
 		return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET','PUT','DELETE'])
-@permission_classes((permissions.AllowAny,))
-def  passenger_details(request,id):
-	try:
-		passenger = Bus.objects.get(passenger_id=id)
-		print passenger
-	except passenger.DoesNotExist:
-		return Response(status=status.HTTP_404_NOT_FOUND)
-	if request.method == 'GET':
-		serializer =BusSerializer(passenger)
-		return Response(serializer.data)
-	elif request.method == 'PUT':
-		# import pdb
-		# pdb.set_trace()
-		serializer = BusSerializer(passenger,data=request.data)
-		if serializer.is_valid():
-			serializer.save()
-			return Response(serializer.data)
-		return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
-	elif request.method =='DELETE':
-		passenger.delete()
-		return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 

@@ -8,5 +8,5 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bus/','indra.views.passenger_list'),
-    url(r'^bus/(?P<id>[\w\-]+)/$','indra.views.passenger_details')
+    
 ]
